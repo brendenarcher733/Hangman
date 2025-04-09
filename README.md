@@ -1,89 +1,114 @@
-# Hangman
-Displays a game of hangman with a variety of words inputted by the student
-Hangman Game
+#  Hangman 2.0 — Fullstack Web App with React, MongoDB & Docker
 
-Description
+Hangman 2.0 is a modern, full-stack word-guessing game built with **React** on the frontend and **Node.js/Express** on the backend. It uses **MongoDB** to store player stats and is fully containerized using **Docker Compose**.
 
-This is a simple Hangman game built using React with class-based components. Players guess letters to complete a randomly chosen word before running out of lives.
+This upgraded version features beautiful styling, dynamic hangman images, win/loss tracking, and real-time win percentage stats fetched from a live API.
 
-Features
+---
 
-Random word selection from a predefined list.
+##  Screenshots
 
-Tracks guessed letters and remaining lives.
+| Game In Progress | Game Over |
+|------------------|-----------|
+| ![Gameplay](public/images/hangman_2.png) | ![Lost Screen](public/images/hangman_6.png) |
 
-Displays the Hangman image based on incorrect guesses.
+---
 
-Provides a restart button to play a new game.
+##  Features
 
-Installation & Setup
+-Interactive letter-based guessing  
+- Real-time win/loss tracking with MongoDB  
+- Win percentage display after each round  
+- Play again button to reset state  
+-Dockerized backend & database  
+ -Clean and responsive design  
+-Modular file structure for scalability
 
-Follow these steps to run the Hangman game locally:
+---
 
-Prerequisites
+## -Tech Stack
 
-Ensure you have Node.js and npm installed on your system.
+| Layer       | Tech Used             |
+|-------------|------------------------|
+| Frontend    | React, CSS             |
+| Backend     | Node.js, Express       |
+| Database    | MongoDB (via Docker)   |
+| Container   | Docker + Docker Compose|
 
-Steps
+---
 
-Clone the repository:
+##  Project Structure
 
-git clone <repository_url>
-cd hangman_project/hangman
+hangman-v2/ ├── client/ # React frontend │ ├── src/ │ │ ├── App.js │ │ ├── App.css │ │ └── HangmanImage.js │ └── public/images/ # 7 hangman stages (0–6) ├── server/ # Node backend │ ├── index.js │ ├── models/Result.js │ ├── Dockerfile │ └── package.json ├── docker-compose.yml # Runs backend + MongoDB └── README.md
 
-Install dependencies:
+yaml
+Copy
+Edit
 
+---
+
+## 🔧 Installation & Running the App
+
+###  With Docker (Recommended)
+
+#### 1. Clone the repo
+
+```bash
+git clone https://github.com/YOUR_USERNAME/hangman-v2.git
+cd hangman-v2
+2. Start backend + MongoDB with Docker Compose
+bash
+Copy
+Edit
+docker compose up --build
+Your backend will be live at:
+http://localhost:4000/api/word
+http://localhost:4000/api/stats
+
+3. Start the frontend React app
+bash
+Copy
+Edit
+cd client
 npm install
-
-Start the development server:
-
 npm start
+The game runs on http://localhost:3000
 
-Open http://localhost:3000 in your browser to play the game.
+API Endpoints
+Method	Endpoint	Description
+GET	/api/word	Returns a random word
+GET	/api/stats	Returns overall win percentage
+POST	/api/result	Records win/loss in MongoDB
+ Optional: Backend Testing
+If you're using Jest or Supertest, you can write tests like this:
 
-How to Play
+js
+Copy
+Edit
+// server/tests/backend.test.js
 
-Click inside the input box and enter a letter.
+const request = require('supertest');
+const app = require('../index'); // if exportable
 
-Click the Search button to guess.
+describe('GET /api/word', () => {
+  it('returns a word', async () => {
+    const res = await request(app).get('/api/word');
+    expect(res.body).toHaveProperty('word');
+  });
+});
+Run it with:
 
-Correct guesses reveal letters, while incorrect guesses reduce lives.
+bash
+Copy
+Edit
+npm install --save-dev jest supertest
+npm test
+Future Improvements
+Add user authentication and personal win stats
 
-The game ends when:
+Add difficulty modes (easy/medium/hard)
 
-You correctly guess all letters (You win! ).
+Deploy backend to Render/Vercel/Heroku
 
-You run out of lives (Game Over! ).
+Deploy frontend with Netlify or Vercel
 
-Click New Game to restart.
-
-Extra Features (Bonus)
-
-Tracks previously guessed letters.
-
-Displays remaining lives.
-
-Uses images for the Hangman stages.
-
-Project Structure
-
-/hangman
-│── /public            # Static assets (images, favicon)
-│── /src               # React components
-│   │── HangmanGame.js  # Main game logic
-│   │── LetterBox.js    # Displays guessed letters
-│   │── SingleLetterSearchBar.js # Input field for guessing letters
-│── package.json       # Project dependencies
-│── README.md          # Instructions
-
-Technologies Used
-
-React (Class-based Components)
-
-JavaScript (ES6+)
-
-HTML & CSS
-
-Author
-
-Created by Brenden Archer as part of a React class project.

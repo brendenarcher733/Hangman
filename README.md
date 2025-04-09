@@ -16,17 +16,17 @@ This upgraded version features beautiful styling, dynamic hangman images, win/lo
 
 ##  Features
 
--Interactive letter-based guessing  
+- Interactive letter-based guessing  
 - Real-time win/loss tracking with MongoDB  
 - Win percentage display after each round  
 - Play again button to reset state  
--Dockerized backend & database  
- -Clean and responsive design  
--Modular file structure for scalability
+- Dockerized backend & database  
+- Clean and responsive design  
+- Modular file structure for scalability
 
 ---
 
-## -Tech Stack
+##  Tech Stack
 
 | Layer       | Tech Used             |
 |-------------|------------------------|
@@ -47,7 +47,7 @@ Edit
 
 ---
 
-## 🔧 Installation & Running the App
+##  Installation & Running the App
 
 ###  With Docker (Recommended)
 
@@ -74,12 +74,12 @@ npm install
 npm start
 The game runs on http://localhost:3000
 
-API Endpoints
+ API Endpoints
 Method	Endpoint	Description
 GET	/api/word	Returns a random word
 GET	/api/stats	Returns overall win percentage
 POST	/api/result	Records win/loss in MongoDB
- Optional: Backend Testing
+Optional: Backend Testing
 If you're using Jest or Supertest, you can write tests like this:
 
 js
@@ -103,7 +103,7 @@ Copy
 Edit
 npm install --save-dev jest supertest
 npm test
-Future Improvements
+ Future Improvements
 Add user authentication and personal win stats
 
 Add difficulty modes (easy/medium/hard)
@@ -111,4 +111,5 @@ Add difficulty modes (easy/medium/hard)
 Deploy backend to Render/Vercel/Heroku
 
 Deploy frontend with Netlify or Vercel
+
 
